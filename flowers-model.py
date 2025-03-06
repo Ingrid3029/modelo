@@ -2,7 +2,7 @@
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.optimizers import Adam
-
+ 
 # Helper libraries
 # import matplotlib.pyplot as plt
 import numpy as np
@@ -35,15 +35,15 @@ folders.remove("LICENSE.txt")
 print(folders)
 
 for folder in folders:
-        for file in os.listdir(os.path.join(data,folder)):
-                if file.endswith("jpg"):
-                    image_names.append(os.path.join(data,folder,file))
-                    train_labels.append(folder)
-                    img = cv2.imread(os.path.join(data,folder,file))
-                    im = cv2.resize(img,size)
-                    train_images.append(im)
-                else:
-                        continue
+    for file in os.listdir(os.path.join(data,folder)):
+        if file.endswith("jpg"):
+            image_names.append(os.path.join(data,folder,file))
+            train_labels.append(folder)
+            img = cv2.imread(os.path.join(data,folder,file))
+            im = cv2.resize(img,size)
+            train_images.append(im)
+        else:
+            continue
 
 # Transform the image array to a numpy type
 
@@ -86,4 +86,4 @@ model.compile(optimizer=Adam(learning_rate=0.001),
 model.fit(train,labels, epochs=5)
 
 export_path = 'flowers-model/1/'
-tf.saved_model.save(model, os.path.join('./',export_path)) 
+tf.saved_model.save(model, os.path.join('./',export_path))
